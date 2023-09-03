@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+from sys import argv
+
+
+def factorize(value):
+    """
+    Factorize as many numbers as possible into a product of two smaller numbers.
+    """
+    i = 2
+
+    if value < 2:
+        return
+    while value % i:
+        i += 1
+    print("{}={}*{}".format(int(value), int(value / i), i))
+
+if len(argv) != 2:
+    exit()
+
+with open(argv[1]) as file:
+    line = file.readline()
+
+    while line != "":
+        value = int(line.split('\n')[0])
+        factorize(value)
+        line = file.readline()
