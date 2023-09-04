@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def first_prime_factor(n):
     for factor in [2, 3, 5, 7, 11]:
         if n % factor == 0:
@@ -11,6 +12,7 @@ def first_prime_factor(n):
             return i
         i += 2
     return n
+
 
 if __name__ == "__main__":
     with open(sys.argv[1], "r") as file:
