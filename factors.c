@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 	FILE *ptr;
 	char *buffer;
 	size_t count;
-	u_int64_t num;
-	u_int64_t i;
+	u_int32_t num;
+	u_int32_t i;
 
 	ptr = fopen(argv[1], "r");
 	if (ptr == NULL)
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		{
 			if (num % i == 0)
 			{
-				printf("%ld=%ld*%ld\n", num, num / i, i);
+				printf("%d=%d*%d\n", num, num / i, i);
 				break;
 			}
 		}
