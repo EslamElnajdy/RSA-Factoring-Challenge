@@ -1,71 +1,22 @@
 #!/usr/bin/python3
-from sys import argv
-from linecache import getline
+import sys
 
 
-def first_prime_factor(n: int) -> int:
-    if n <= 3:
-        return (2)
-    if n % 2 == 0:
-        return (2)
-    if n % 3 == 0:
-        return (3)
-    limit = int(n ** 0.5)
-    sec_limit = n // 4
-    if sec_limit % 2 == 0:
-        sec_limit += 1
-    thi_limit = n // 2
-    frt_limit = sec_limit + sec_limit // 2
-    if limit % 2 == 0:
-        limit = limit + 1
-    i, j , k, l, m, o = 5, limit, sec_limit, sec_limit, thi_limit, frt_limit
-    p = frt_limit
-    while o < m:
+def first_prime_factor(n):
+    for factor in [2, 3, 5, 7, 11]:
+        if n % factor == 0:
+            return factor
+    i = 13
+    while i * i <= n:
         if n % i == 0:
-            return (i)
-        if n % (i + 2) == 0:
-            return (i + 2)
-        if n % j == 0:
-            return (j)
-        if n % (j - 2) == 0:
-            return (j - 2)
-        if n % k == 0:
-            return (k)
-        if n % (k - 2) == 0:
-            return (k - 2)
-        if n % l == 0:
-            return (l)
-        if n % (l + 2) == 0:
-            return (l + 2)
-        if n % m == 0:
-            return (m)
-        if n % (m - 2) == 0:
-            return (m - 2)
-        if n % o == 0:
-            return (o)
-        if n % (o + 2) == 0:
-            return (o + 2)
-        if n % p == 0:
-            return (p)
-        if n % (p - 2) == 0:
-            return (p - 2)
-        i += 6
-        j -= 4
-        k -= 4
-        l += 4
-        m -= 4
-        o += 4
-        p -= 4
-    return (1)
+            return i
+        i += 2
+    return n
 
 
 if __name__ == "__main__":
-    line = 1
-    while True:
-        line_str = getline(argv[1], line)
-        if (len(line_str) == 0):
-            break
-        num = int(line_str[:-1])
-        factor = first_prime_factor(num)
-        print("{}={}*{}".format(num, num // factor, factor))
-        line += 1
+    with open(sys.argv[1], "r") as file:
+        for line in file:
+            num = int(line.strip())
+            factor = first_prime_factor(num)
+            print(f"{num}={num // factor}*{factor}")
